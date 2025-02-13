@@ -13,7 +13,9 @@ exports.searchTracks = async (req, res, next) => {
       "Error in searchTracks:",
       error.response ? error.response.data : error.message
     );
-    // Return the error details (or a generic message) for debugging
+
+    // Return the error details  for debugging
+
     res.status(400).json({
       error: error.response ? error.response.data : error.message,
     });

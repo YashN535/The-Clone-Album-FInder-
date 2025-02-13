@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Spotify Clone</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">The Clone</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <!-- Add a Logout button -->
+
+        <button id="logout-button">Logout</button>
+
+        <script>
+          document
+            .getElementById("logout-button")
+            .addEventListener("click", async () => {
+              try {
+                const response = await fetch(
+                  "http://localhost:4000/auth/logout",
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  }
+                );
+
+                console.log("Logout request sent", response); // Log the response
+
+                if (response.ok) {
+                  console.log("Logout successful"); // Log success
+
+                  // Clear user data from localStorage
+
+                  localStorage.removeItem("identifier");
+
+                  // Show alert message
+
+                  alert("You have been logged out successfully!");
+
+                  // Redirect to the sign-in page
+
+                  window.location.href = "signin.html";
+                } else {
+                  console.error(
+                    "Logout failed",
+                    response.status,
+                    response.statusText
+                  );
+                  alert("Logout failed. Please try again.");
+                }
+              } catch (error) {
+                console.error("Error during logout:", error);
+                alert("Error during logout. Please try again.");
+              }
+            });
+        </script>
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mt-5">
+      <section class="jumbotron text-center">
+        <h1 class="display-4">Welcome to The Clone</h1>
+        <p class="lead">Discover albums and enjoy your favorite tracks.</p>
+        <form id="searchForm" class="form-inline justify-content-center">
+          <input
+            type="text"
+            class="form-control mr-2"
+            id="searchInput"
+            placeholder="Search for songs, artists..."
+            required
+          />
+          <button type="submit" class="btn btn-success">Search</button>
+        </form>
+      </section>
+
+      <!-- Search Results -->
+      <section id="results" class="row"></section>
+    </main>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

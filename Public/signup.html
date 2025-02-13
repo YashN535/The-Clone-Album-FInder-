@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - Chat App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="auth-container">
+      <h2>Sign Up</h2>
+      <form id="signup-form">
+        <input
+          type="text"
+          id="signup-username"
+          placeholder="Username"
+          required
+        />
+        <input type="email" id="signup-email" placeholder="Email" required />
+        <input
+          type="password"
+          id="signup-password"
+          placeholder="Password"
+          required
+        />
+        <button type="submit">Sign Up</button>
+      </form>
+      <p id="signup-message"></p>
+      <p>Already have an account? <a href="signin.html">Sign In</a></p>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("signup-form")
+          .addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const username = document.getElementById("signup-username").value;
+            const email = document.getElementById("signup-email").value;
+            const password = document.getElementById("signup-password").value;
+            const messageElement = document.getElementById("signup-message");
+
+            try {
+              const response = await fetch(
+                "http://localhost:4000/auth/signup",
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  credentials: "include",
+                  body: JSON.stringify({ username, email, password }),
+                }
+              );
+
+              const data = await response.json();
+
+              if (response.ok) {
+                // Success case: inform the user and redirect to the login page
+                messageElement.innerText = "Registration successful!";
+                messageElement.className = "success-message";
+
+                // Store username for convenience
+                localStorage.setItem("username", username);
+
+                // Redirect to signin page after successful registration
+                setTimeout(() => {
+                  window.location.href = "signin.html?registered=true";
+                }, 1500);
+              } else {
+                // Error case
+                messageElement.innerText =
+                  data.message || "Registration failed!";
+                messageElement.className = "error-message";
+              }
+            } catch (error) {
+              console.error("Error:", error);
+              messageElement.innerText = "Error connecting to server!";
+              messageElement.className = "error-message";
+            }
+          });
+      });
+    </script>
+  </body>
+</html>

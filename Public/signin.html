@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Spotify Clone</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="auth-container">
+      <h2>Login</h2>
+      <form id="signin-form">
+        <input
+          type="text"
+          id="signin-identifier"
+          placeholder="Email or Username"
+          required
+        />
+        <input
+          type="password"
+          id="signin-password"
+          placeholder="Password"
+          required
+        />
+        <button type="submit">Log In</button>
+      </form>
+      <p id="signin-message"></p>
+      <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+    </div>
+
+    <script>
+      // Clear input fields when page loads
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("signin-identifier").value = "";
+        document.getElementById("signin-password").value = "";
+      });
+
+      document
+        .getElementById("signin-form")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const identifier = document.getElementById("signin-identifier").value;
+          const password = document.getElementById("signin-password").value;
+
+          try {
+            const response = await fetch("http://localhost:4000/auth/signin", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              credentials: "include",
+              body: JSON.stringify({ identifier, password }),
+            });
+
+            let data;
+            try {
+              data = await response.json();
+            } catch (jsonError) {
+              throw new Error("Invalid response from server");
+            }
+
+            if (response.ok) {
+              console.log("Sign-in successful:", data);
+              document.getElementById("signin-message").innerText =
+                "Sign-in successful!";
+              localStorage.setItem("token", data.token);
+              sessionStorage.setItem("identifier", identifier);
+              // Redirect to index.html after successful login
+              setTimeout(() => {
+                window.location.href = "/index.html";
+              }, 1000);
+            } else {
+              console.log("Error:", data);
+              document.getElementById("signin-message").innerText =
+                data.message || "Invalid credentials!";
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            document.getElementById("signin-message").innerText =
+              "Error processing request!";
+          }
+        });
+    </script>
+  </body>
+</html>

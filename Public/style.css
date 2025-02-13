@@ -1,0 +1,335 @@
+/* ======================================
+   Import Google Fonts
+====================================== */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* ======================================
+   Global Styles & Reset
+====================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #121212;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ======================================
+   Navbar
+====================================== */
+nav.navbar {
+  background-color: #191414;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav .navbar-brand {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+nav .navbar-brand:hover {
+  color: #1DB954;
+}
+
+.navbar-toggler {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar-toggler-icon {
+  position: relative;
+  width: 25px;
+  height: 2px;
+  background-color: #fff;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 2px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.navbar-toggler-icon::before {
+  top: -8px;
+}
+
+.navbar-toggler-icon::after {
+  top: 8px;
+}
+
+/* ======================================
+   Container & Grid
+====================================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ======================================
+   Jumbotron (Main Page)
+====================================== */
+.jumbotron {
+  background: linear-gradient(135deg, #1DB954, #191414);
+  padding: 3rem 2rem;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 2rem;
+  animation: fadeIn 1s ease forwards;
+}
+
+.jumbotron h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.jumbotron p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ======================================
+   Search Form
+====================================== */
+#searchForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#searchForm input {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 50px;
+  margin-right: 0.5rem;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+  width: 320px;
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+#searchForm input::placeholder {
+  color: #aaa;
+}
+
+#searchForm input:focus {
+  box-shadow: 0 0 10px rgba(29, 185, 84, 0.7);
+}
+
+#searchForm button {
+  background-color: #1DB954;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: 600;
+}
+
+#searchForm button:hover {
+  background-color: #17a44d;
+  transform: scale(1.05);
+}
+
+/* ======================================
+   Authentication (Signin & Signup)
+====================================== */
+.auth-container {
+  background-color: #181818;
+  max-width: 500px;
+  width: 100%;
+  margin: 80px auto;
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  animation: slideIn 0.5s ease forwards;
+}
+
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-container form input {
+  padding: 0.85rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #333;
+  color: #fff;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-container form input:focus {
+  background-color: #444;
+  outline: none;
+  box-shadow: 0 0 5px rgba(29, 185, 84, 0.5);
+}
+
+.auth-container form button {
+  background-color: #1DB954;
+  color: #fff;
+  border: none;
+  padding: 0.85rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: 600;
+}
+
+.auth-container form button:hover {
+  background-color: #17a44d;
+  transform: scale(1.02);
+}
+
+.auth-container p {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.auth-container a {
+  color: #1DB954;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.auth-container a:hover {
+  color: #17a44d;
+}
+
+/* ======================================
+   Search Results Cards
+====================================== */
+.card {
+  background-color: #282828;
+  padding: 1.75rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex: 1 1 calc(33.333% - 1rem);
+  margin-bottom: 1rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* ======================================
+   Message Styles
+====================================== */
+.success-message {
+  color: #1DB954;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.error-message {
+  color: #e74c3c;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* ======================================
+   Animations
+====================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ======================================
+   Responsive Adjustments
+====================================== */
+@media (max-width: 768px) {
+  .jumbotron {
+    padding: 2rem 1rem;
+  }
+  
+  #searchForm input {
+    width: 240px;
+  }
+  
+  .card {
+    flex: 1 1 calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    flex: 1 1 100%;
+  }
+}
+
+/* Style for the logout button */
+#logout-button {
+    background-color: #dc3545; /* Bootstrap danger red */
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: auto; /* Adjust as needed to align within navbar */
+    margin-right: 20px;
+  }
+  
+  /* Hover effect for the logout button */
+  #logout-button:hover {
+    background-color: #c82333;
+  }
+  

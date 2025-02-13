@@ -86,12 +86,12 @@ exports.signin = async (req, res) => {
     const token = jwt.sign(
       { userId: user._id, username: user.username },
       SECRET_KEY,
-      { expiresIn: "24h", algorithm: "HS256" }
+      { expiresIn: "15m", algorithm: "HS256" } //15 minutes
     );
 
     res.cookie("token", token, {
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000,
+      maxAge: 15 * 60 * 1000, // 15 minutes
     });
 
     res.json({

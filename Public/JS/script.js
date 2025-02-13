@@ -111,10 +111,11 @@ document.addEventListener("DOMContentLoaded", function () {
             albumLink.href = track.album.external_urls.spotify;
             albumLink.target = "_blank";
             albumLink.className = "btn btn-secondary btn-sm";
-            cardBody.appendChild(albumLink);
 
+            cardBody.appendChild(albumLink);
             cardDiv.appendChild(cardBody);
             colDiv.appendChild(cardDiv);
+
             resultsSection.appendChild(colDiv);
           });
         })

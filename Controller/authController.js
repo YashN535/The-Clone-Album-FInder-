@@ -42,7 +42,7 @@ exports.signup = async (req, res) => {
     // Set the token in a cookie.
     res.cookie("token", token, {
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000, // 24 hours
+      maxAge: 15 * 60 * 1000, // 15 minutes
     });
 
     res.status(201).json({
